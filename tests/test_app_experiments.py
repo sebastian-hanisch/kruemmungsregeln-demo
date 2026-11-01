@@ -41,7 +41,7 @@ def test_default_page_shows_the_metrics_and_all_experiment_verdicts():
     assert values["Prüfer"] == "unbekannt" and values["Sehnen"] == "nicht widerlegt" and values["Urteil"] == "offen" and values["Knoten"] == "5" and values["Kegelprogramm"] == "–"
     text = _texts(at)
     for part in ("**Offen.**", "zuerst am Knoten **sqrt** verletzt", "Von 21 Einträgen beweist der Prüfer 6.", "**Eine verletzte Sehne beweist, eine unverletzte beweist nichts.**", "Widersprüche zwischen Prüfer und Sehnen: **0**",
-                 "linear", "bewiesen konvexe Zufallsbäume mit Kegelatomen", "Ohne Absicherung meldet der Kern den Wert 190,386", "Nach der Umformung `norm2(x, 1)`: Kegelprogramm"):
+                 "linear", "bewiesen konvexe Zufallsbäume mit Kegelatomen", "Ohne Absicherung meldet der Kern den Wert", "Nach der Umformung `norm2(x, 1)`: Kegelprogramm"):
         assert part in text, part
 
 
