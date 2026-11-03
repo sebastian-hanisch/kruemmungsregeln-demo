@@ -329,7 +329,7 @@ def verdict_catalog(rows: list) -> tuple:
     contra = sum(r["judgement"].status == CH.CONTRADICTION for r in rows)
     proven = sum(r["curvature"] != D.UNK for r in rows)
     text = (f"Von {len(rows)} Einträgen beweist der Prüfer {proven}. Bei {len(unknown)} schweigt er: {len(refuted)} davon sind widerlegt (zu Recht keine Aussage), bei {len(open_)} finden die Sehnen nichts. "
-            f"Von diesen {len(open_)} rettet bei **{len(rescued)}** eine Umformung den Beweis, ohne die Funktion zu ändern; bei den übrigen {len(open_) - len(rescued)} fehlt ein Atom oder die Regeln der Umformung reichen nicht. "
+            f"Von diesen {len(open_)} rettet bei **{len(rescued)}** eine Umformung den Beweis, ohne die Funktion zu ändern (eine Identität, numerisch auf 4000 Punkten bestätigt); bei den übrigen {len(open_) - len(rescued)} fehlt ein Atom oder die Regeln der Umformung reichen nicht. "
             f"Widersprüche zwischen Prüfer und Sehnen: {contra}.")
     return "info", text
 

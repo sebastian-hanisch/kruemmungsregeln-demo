@@ -2,7 +2,7 @@
 Sebastian Hanisch - Operations Research und Machine Learning
 
 Stück 3 der Reihe „Konvexe und konische Optimierung“: Ein Prüfer nach den Regeln des „Disciplined Convex Programming“ (DCP) sagt „konvex“, „konkav“ oder „unbekannt“. Er beweist oder schweigt;
-„unbekannt“ heißt nicht „nicht konvex“. Eine Sehnenprobe widerlegt Nichtkonvexität (Gegenbeispiel mit Zahlen), beweist aber nie Konvexität. Der Beweis liefert das Kegelprogramm: jedes Atom bekommt
+„unbekannt“ heißt nicht „nicht konvex“. Eine Sehnenprobe widerlegt Nichtkonvexität (Gegenbeispiel mit Zahlen), beweist aber nie Konvexität. Der Beweis liefert das Kegelprogramm: jedes Atom (außer exp, log, log_sum_exp) bekommt
 eine Hilfsvariable und eine Kegelbedingung (Orthant, Lorentz), und der gemeinsame Kern (kegel_kern.py, wortgleich mit Stück 2, 4 und 5) löst es.
 Aufbau und Regeln: DEMO-PLAYBOOK.md (§2).
 
@@ -98,7 +98,7 @@ st.markdown(
 **Ein Prüfer für Konvexität kann beweisen, aber nicht widerlegen.** Er folgt einem festen Regelwerk (*Disciplined Convex Programming*, DCP): jedes Atom (`square`, `sqrt`, `maximum`, …) hat eine Krümmung und eine Monotonie,
 und eine Verkettung ist erlaubt, wenn beides zusammenpasst. Das Ergebnis ist „konvex“, „konkav“ oder **„unbekannt“** – und „unbekannt“ heißt nicht „nicht konvex“: `sqrt(x² + 1)` ist konvex, und der Prüfer schweigt trotzdem.
 Eine Sehne, die die Konvexität verletzt, **widerlegt** sie mit Zahlen; keine verletzte Sehne beweist nichts. Zusammen ergeben beide ein dreiwertiges Urteil: bewiesen, widerlegt oder offen.
-Der Beweis ist nützlich: **Jedes bewiesene Atom lässt sich in ein Kegelprogramm übersetzen** (Stück 2), und der Kern aus Stück 5 löst es.
+Der Beweis ist nützlich: **Jedes bewiesene Atom mit Orthant- oder Lorentz-Übersetzung (acht der elf) wird zu einem Kegelprogramm** (Stück 2), und der Kern aus Stück 5 löst es; `exp`, `log` und `log_sum_exp` brauchen den Exponentialkegel (Stück 7).
 Stück 3 der Reihe „Konvexe und konische Optimierung“.
 
 Weiter unten: **vier Experimente** (**🔬**), **🚧 Wo die Annahmen enden** und der Expander **📐 Mathematische Formulierung**.
@@ -267,7 +267,7 @@ $t \ge |u|$: $t - u \ge 0,\ t + u \ge 0$. $\quad t \ge \max_i u_i$: $t - u_i \ge
 $t \ge u^2$: $(t+1,\ t-1,\ 2u) \in \mathcal{Q}$, denn $(t-1)^2 + 4u^2 \le (t+1)^2 \iff u^2 \le t$.
 $t \ge 1/u$ ($u > 0$): $(t+u,\ t-u,\ 2) \in \mathcal{Q} \iff 4 \le 4tu$.
 $t \ge u^2/v$ ($v > 0$): $(t+v,\ t-v,\ 2u) \in \mathcal{Q} \iff u^2 \le tv$.
-$t \le \sqrt{u}$: $(u+1,\ u-1,\ 2t) \in \mathcal{Q} \iff t^2 \le u$.
+$t \le \sqrt{u}$ (für $t \ge 0$): $(u+1,\ u-1,\ 2t) \in \mathcal{Q} \iff t^2 \le u$.
 Konvexe Atome bekommen die Epigraph-Seite ($t \ge f$), konkave die Hypograph-Seite ($t \le f$); welche gilt, bestimmt die Krümmung, und dass die Verkettung aufgeht, hat der Prüfer bewiesen. Das Ziel ist die Wurzel, minimiert.
 
 **Barriere-Parameter.** Orthant: eine Einheit je Zeile; Lorentz-Kegel: 2 (Stück 5).
